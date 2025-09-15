@@ -183,7 +183,7 @@ st.markdown(
             <button style="
                 background-color:#0070ba;
                 color:white;
-                padding:12px 28px;
+                padding:8px 10px;
                 border:none;
                 border-radius:8px;
                 font-size:18px;
