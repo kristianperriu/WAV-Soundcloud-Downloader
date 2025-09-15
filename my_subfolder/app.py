@@ -44,7 +44,7 @@ status_text = st.empty()
 cancel_placeholder = st.empty()
 
 def download_worker(url: str, is_playlist: bool):
-    """Download as WAV with accurate per-track index display."""
+    """Download as WAV with accurate per-track index display and return slug + zip buffer."""
     ffmpeg_dir = os.path.dirname(find_ffmpeg())
     slug = sanitize(url.rstrip('/').split('/')[-1])
     out_folder = os.path.join(os.getcwd(), slug)
@@ -125,7 +125,7 @@ def download_worker(url: str, is_playlist: bool):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
 
-    # Zip the results
+    # Zip everything inside a buffer
     zip_buffer = io.BytesIO()
     with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zf:
         for fname in sorted(os.listdir(out_folder)):
@@ -133,7 +133,7 @@ def download_worker(url: str, is_playlist: bool):
             if os.path.isfile(fpath):
                 zf.write(fpath, arcname=fname)
     zip_buffer.seek(0)
-    return slug, zip_buffer
+    return slug, zip_buffer   # slug = clean name for ZIP
 
 # --- Start download ---
 if start_download:
@@ -153,6 +153,7 @@ if start_download:
             progress_bar.progress(100)
             status_text.text("✅ All tracks downloaded. Ready to save.")
             cancel_placeholder.empty()
+            # ✅ Use the playlist/track slug as the ZIP file name
             st.download_button(
                 label="📥 Download as ZIP",
                 data=zip_buffer,
@@ -167,7 +168,7 @@ if start_download:
                 status_text.text(f"⚠️ Download failed: {e}")
 
 # ---------------------------------------------------------------------
-# Disclaimer 
+# Donation & Contact Footer
 # ---------------------------------------------------------------------
 st.markdown(
     """
@@ -176,7 +177,7 @@ st.markdown(
     <div style="text-align:center; font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
         <p style="font-size:16px; color:#555; max-width:500px; margin:0 auto 1.5em;">
             If you find this downloader useful, consider supporting the project with a small contribution.
-            Your donations directly funds maintenance and future improvements.
+            Your donations directly fund maintenance and future improvements.
         </p>
         <a href="https://www.paypal.me/KristianPerriu" target="_blank" rel="noopener">
             <button style="
@@ -203,10 +204,8 @@ st.markdown(
         with all applicable copyright and intellectual property laws.
         <br><br>
         <strong>Contact:</strong><br>
-        <a href="mailto:your@email.com" style="color:#0070ba;">kperriu@gmail.com</a>
+        <a href="mailto:kperriu@gmail.com" style="color:#0070ba;">kperriu@gmail.com</a>
     </div>
     """,
     unsafe_allow_html=True
 )
-
-
