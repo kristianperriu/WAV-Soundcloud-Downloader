@@ -174,38 +174,17 @@ st.markdown(
     """
     <hr style="margin-top:3em;margin-bottom:2em;">
 
-    <div style="text-align:center; font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
-        <p style="font-size:16px; color:#555; max-width:500px; margin:0 auto 1.5em;">
-            If you find this downloader useful, consider supporting the project with a small contribution.
-            Your donations directly fund maintenance and future improvements.
-        </p>
-        <a href="https://www.paypal.me/KristianPerriu" target="_blank" rel="noopener">
-            <button style="
-                background-color:#0070ba;
-                color:white;
-                padding:8px 10px;
-                border:none;
-                border-radius:8px;
-                font-size:18px;
-                font-weight:600;
-                cursor:pointer;
-                box-shadow:0 4px 6px rgba(0,0,0,0.2);
-            ">
-                💳 Donate via PayPal
-            </button>
-        </a>
-        <hr style="margin-top:2em;margin-bottom:2em;width:100%">
-    </div>
-
     <div style="font-size:13px; color:#666; text-align:center; max-width:600px; margin:0 auto;">
         <strong>Copyright Notice:</strong><br>
         This tool is intended solely for downloading content that you own the rights to
         or that is freely and legally available. By using this service, you agree to comply
         with all applicable copyright and intellectual property laws.
         <br><br>
+        <hr style="margin-top:2em;margin-bottom:3em;width:100%">
         <strong>Contact:</strong><br>
-        <a href="mailto:kperriu@gmail.com" style="color:#0070ba;">kperriu@gmail.com</a>
+        <a href="mailto:your@email.com" style="color:#0070ba;">kperriu@gmail.com</a>
     </div>
     """,
     unsafe_allow_html=True
 )
+
