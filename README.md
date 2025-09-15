@@ -3,8 +3,6 @@
 A modern Streamlit web app to **download SoundCloud tracks and playlists as high-quality WAV files**.  
 Built with [Streamlit](https://streamlit.io/) and [yt-dlp](https://github.com/yt-dlp/yt-dlp).
 
-![screenshot](docs/screenshot.png) <!-- optional if you add a screenshot -->
-
 ---
 
 ## ✨ Features
